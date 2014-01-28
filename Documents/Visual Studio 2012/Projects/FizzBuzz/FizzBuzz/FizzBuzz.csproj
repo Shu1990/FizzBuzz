@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FizzBuzzGame.cs" />
+    <Compile Include="IFizzBuzzTranslator.cs" />
+    <Compile Include="FizzBuzzTranslator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

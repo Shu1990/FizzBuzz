@@ -4,6 +4,7 @@
     {
         private const int FizzDivisor = 3;
         private const string Fizz = "FIZZ";
+
         private const int BuzzDivisor = 5;
         private const string Buzz = "BUZZ";
         private const string FizzBuzz = "FIZZBUZZ";

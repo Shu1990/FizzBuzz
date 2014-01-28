@@ -8,34 +8,39 @@ namespace FizzBuzz
 {
     public class FizzBuzzGame
     {
-
-        private int _currentNumberPointer;
+        private int _currentNumberPointer = 1;
         private const int MaxGameNumber = 100;
 
         private readonly FizzBuzzTranslator _fizzBuzzTranslator;
-        private readonly string[] _FizzBuzzCount;
+        private readonly string[] _fizzBuzzCount;
 
 
         public FizzBuzzGame(FizzBuzzTranslator fizzBuzzTranslator)
         {
             _fizzBuzzTranslator = fizzBuzzTranslator;
             
-            _FizzBuzzCount = new string[MaxGameNumber];
-            for (int i = 0; i < MaxGameNumber; i++)
+            _fizzBuzzCount = new string[MaxGameNumber];
+
+            //initialize correct FIZZBUZZCOUNT
+            for (int i = 1; i < MaxGameNumber; i++)
             {
-                _FizzBuzzCount[i] = Convert(i);
+                _fizzBuzzCount[i] = Convert(i);
             }
         }
 
-        public bool GiveNextNumber(int givenInteger)
+        public bool ProvideNextValue(string givenValue)
         {
-            if (_FizzBuzzCount[_currentNumberPointer] == Convert(givenInteger)) {
+            if (CorrectFizzBuzzValue(givenValue)) {
                 _currentNumberPointer++;
                 return true;
             } else {
                 return false;
             }
-                
+        }
+
+        private bool CorrectFizzBuzzValue(string givenValue)
+        {
+            return givenValue == _fizzBuzzCount[_currentNumberPointer];
         }
 
 
