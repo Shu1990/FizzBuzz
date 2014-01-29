@@ -9,54 +9,55 @@ namespace FizzBuzz
     public class FizzBuzzGame
     {
         private int _currentNumberPointer = 1;
-        private const int MaxGameNumber = 100;
+        public const int MaxGameNumber = 100;
+        private string[] _fizzBuzzCount;
 
         private readonly FizzBuzzTranslator _fizzBuzzTranslator;
-        private readonly string[] _fizzBuzzCount;
 
-
+        //constructor
         public FizzBuzzGame(FizzBuzzTranslator fizzBuzzTranslator)
         {
             _fizzBuzzTranslator = fizzBuzzTranslator;
-            
-            _fizzBuzzCount = new string[MaxGameNumber];
 
-            //initialize correct FIZZBUZZCOUNT
-            for (int i = 1; i < MaxGameNumber; i++)
-            {
-                _fizzBuzzCount[i] = Convert(i);
-            }
+            InitializeFizzBuzzCount();
         }
 
-        public bool ProvideNextValue(string givenValue)
+        //checks if given value is correct
+        public bool CheckNextValue(string givenValue)
         {
-            if (CorrectFizzBuzzValue(givenValue)) {
+            if (!AtEndOfGame() && CorrectFizzBuzzValue(givenValue))
+            {
                 _currentNumberPointer++;
                 return true;
-            } else {
-                return false;
             }
+            return false;
         }
 
+
+        public bool AtEndOfGame()
+        {
+            return _currentNumberPointer == MaxGameNumber;
+        }
+
+
+        //implemented for readability
         private bool CorrectFizzBuzzValue(string givenValue)
         {
-            return givenValue == _fizzBuzzCount[_currentNumberPointer];
+            return givenValue.ToUpper() == _fizzBuzzCount[_currentNumberPointer];
         }
-
-
-        private string Convert(int givenInteger)
+        
+        private string ConvertToFizzBuzzCount(int givenInteger)
         {
             return _fizzBuzzTranslator.DetermineReturnString(givenInteger);
         }
-
-
-
-
-
-
-
-
-
-
+        
+        private void InitializeFizzBuzzCount()
+        {
+            _fizzBuzzCount = new string[MaxGameNumber];
+            for (int normalNumber = 1; normalNumber < MaxGameNumber; normalNumber++)
+            {
+                _fizzBuzzCount[normalNumber] = ConvertToFizzBuzzCount(normalNumber);
+            }
+        }
     }
 }
